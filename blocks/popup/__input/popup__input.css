@@ -1,7 +1,10 @@
 .popup__input {
   height: 27px;
   border: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2) ;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  line-height: 17px;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .popup__input:first-of-type {

@@ -13,6 +13,7 @@
 /* header*/
 
 @import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
 
 /* profile */
 
@@ -29,6 +30,7 @@
 /* fost-feed */
 
 @import url(../blocks/post-feed/post-feed.css);
+@import url(../blocks/post-feed/__list/post-feed__list.css);
 
 /* card */
 

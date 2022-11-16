@@ -2,6 +2,13 @@
   min-height: 74px;
   max-width: 880px;
   margin: 45px auto 40px;
-  padding: 0 19px;
+  padding: 0 27px;
   border-bottom: 1px solid #545454;
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    min-height: 55px;
+    margin: 28px auto 42px;
+  }
 }

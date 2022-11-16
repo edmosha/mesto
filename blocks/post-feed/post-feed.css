@@ -1,9 +1,5 @@
 .post-feed {
   max-width: 880px;
-  justify-content: center;
   margin: 0 auto;
   padding: 0 19px;
-  display: grid;
-  gap: 20px 17px;
-  grid-template-columns: repeat(3, 282px);
 }
