@@ -2,8 +2,5 @@
   background: #000;
   font-family: 'Inter', Helvetica, sans-serif;
   color: #fff;
-}
-
-* {
-  border: 1px solid darkorchid;
+  padding: 0 19px;
 }

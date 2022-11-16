@@ -1,6 +1,8 @@
 .profile {
   max-width: 880px;
-  margin: 0 auto;
+  /* box-sizing: border-box; */
+  margin: 0 auto 51px;
+  padding: 0 19px;
   display: grid;
   gap: 30px;
   grid-template-columns: 120px calc(100% - 330px) 150px;

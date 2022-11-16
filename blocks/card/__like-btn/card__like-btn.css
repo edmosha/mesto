@@ -3,9 +3,16 @@
   height: 19px;
   padding: 0;
   border: none;
-  font: inherit;
-  color: inherit;
   background: transparent url(../../../images/like-button.svg) center no-repeat;
   cursor: pointer;
-  margin: 25px 15px 31px 0;
+  margin: 30px 20px 25px 0;
+}
+
+.card__like-btn:hover {
+  opacity: 0.5;
+}
+
+.card__like-btn:active {
+  opacity: 1;
+  background-image: url(../../../images/like-button-active.svg);
 }

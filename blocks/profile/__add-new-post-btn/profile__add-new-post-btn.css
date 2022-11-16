@@ -3,8 +3,10 @@
   height: 50px;
   padding: 0;
   border: 2px solid #fff;
-  font: inherit;
-  color: inherit;
   background: transparent url(../../../images/add-button.svg) center no-repeat;
   cursor: pointer;
+}
+
+.profile__add-new-post-btn:hover {
+  opacity: 0.6;
 }

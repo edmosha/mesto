@@ -149,7 +149,7 @@ img {
   border-style: none;
 }
 
-/* Forms
+/* popups
    ========================================================================== */
 
 /**
@@ -179,13 +179,13 @@ input { /* 1 */
 }
 
 /**
- * Remove the inheritance of text transform in Edge, Firefox, and IE.
- * 1. Remove the inheritance of text transform in Firefox.
+ * Remove the inheritance of text transpopup in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transpopup in Firefox.
  */
 
 button,
 select { /* 1 */
-  text-transform: none;
+  text-transpopup: none;
 }
 
 /**
