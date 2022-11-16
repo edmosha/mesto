@@ -1,0 +1,9 @@
+.profile {
+  max-width: 880px;
+  margin: 0 auto;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 120px calc(100% - 330px) 150px;
+  grid-template-rows: 1 1fr;
+  align-items: center;
+}

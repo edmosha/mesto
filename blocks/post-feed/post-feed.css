@@ -1,0 +1,7 @@
+.post-feed {
+  max-width: 880px;
+  margin: 100px auto;
+  display: grid;
+  gap: 17px;
+  grid-template-columns: repeat(3, 282px);
+}
