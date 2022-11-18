@@ -8,7 +8,7 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
-html {
+ html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -149,7 +149,7 @@ img {
   border-style: none;
 }
 
-/* popups
+/* Forms
    ========================================================================== */
 
 /**
@@ -179,13 +179,13 @@ input { /* 1 */
 }
 
 /**
- * Remove the inheritance of text transpopup in Edge, Firefox, and IE.
- * 1. Remove the inheritance of text transpopup in Firefox.
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
  */
 
 button,
 select { /* 1 */
-  text-transpopup: none;
+  text-transform: none;
 }
 
 /**
