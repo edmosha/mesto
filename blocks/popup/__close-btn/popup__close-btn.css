@@ -3,7 +3,8 @@
   height: 32px;
   padding: 0;
   border: none;
-  background: #000 url('../../../images/close-button.svg') no-repeat;
+  background-color: unset;
+  background: url('../../../images/close-button.svg') no-repeat;
   background-size: contain;
   cursor: pointer;
 
