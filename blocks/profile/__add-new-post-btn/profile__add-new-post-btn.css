@@ -15,5 +15,6 @@
   .profile__add-new-post-btn {
     min-width: 282px;
     width: 100%;
+    background-size: 16px 16px;
   }
 }

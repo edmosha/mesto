@@ -21,77 +21,79 @@
 
         <div class="profile__info-container-header">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-btn"></button>
+          <button class="profile__edit-btn" type="button"></button>
         </div>
 
           <p class="profile__description">Исследователь океана</p>
 
       </div>
-      <button class="profile__add-new-post-btn"></button>
+      <button class="profile__add-new-post-btn" type="button"></button>
     </section>
 
     <section class="post-feed">
       <ul class="post-feed__list">
-        <li class="card">
-          <img class="card__image" src="./images/saint-petersburg.jpg" alt="Исаакиевский собор крупным планом">
-          <div class="card__title-hidden-container">
-            <h2 class="card__title">Санкт-Петербург</h2>
-          </div>
-          <button class="card__like-btn"></button>
+        <li>
+          <article  class="card">
+            <img class="card__image" src="./images/saint-petersburg.jpg" alt="Исаакиевский собор крупным планом">
+            <div class="card__title-hidden-container">
+              <h2 class="card__title">Санкт-Петербург</h2>
+            </div>
+            <button class="card__like-btn" type="button"></button>
+          </article>
         </li>
         
-        <li class="card">
-          <img class="card__image" src="./images/svetlpgorsk.jpg" alt="Море в Светлогорске">
-          <div class="card__title-hidden-container">
-            <h2 class="card__title">Светлогорск</h2>
-          </div>
-          <button class="card__like-btn"></button>
+        <li>
+          <article  class="card">
+            <img class="card__image" src="./images/svetlpgorsk.jpg" alt="Море в Светлогорске">
+            <div class="card__title-hidden-container">
+              <h2 class="card__title">Светлогорск</h2>
+            </div>
+            <button class="card__like-btn" type="button"></button>
+          </article>
         </li>
   
-        <li class="card">
-          <img class="card__image" src="./images/ekaterinburg.jpg" alt="офис российской медной компании">
+        <li>
+          <article  class="card">
+            <img class="card__image" src="./images/ekaterinburg.jpg" alt="офис российской медной компании">
           <div class="card__title-hidden-container">
             <h2 class="card__title">Екатеринбург</h2>
           </div>
-          <button class="card__like-btn"></button>
+          <button class="card__like-btn" type="button"></button>
+          </article>
         </li>
   
-        <li class="card">
-          <img class="card__image" src="./images/kaliningrag.jpg" alt="Кафедральный сабор крупным планом">
+        <li>
+          <article  class="card">
+            <img class="card__image" src="./images/kaliningrag.jpg" alt="Кафедральный сабор крупным планом">
           <div class="card__title-hidden-container">
             <h2 class="card__title">Калининград</h2>
           </div>
-          <button class="card__like-btn"></button>
+          <button class="card__like-btn" type="button"></button>
+          </article>
         </li>
   
-        <li class="card">
-          <img class="card__image" src="./images/baikal.jpg" alt="Байкал, вид на пирс и бесконечное озеро">
+        <li>
+          <article  class="card">
+            <img class="card__image" src="./images/baikal.jpg" alt="Байкал, вид на пирс и бесконечное озеро">
           <div class="card__title-hidden-container">
             <h2 class="card__title">Байкал</h2>
           </div>
-          <button class="card__like-btn"></button>
+          <button class="card__like-btn" type="button"></button>
+          </article>
         </li>
   
-        <li class="card">
-          <img class="card__image" src="./images/pushkin.jpg" alt="Екатерининский дворец крупным планом">
-          <div class="card__title-hidden-container">
-            <h2 class="card__title">Пушкин</h2>
-          </div>
-          <button class="card__like-btn"></button>
+        <li>
+          <article  class="card">
+            <img class="card__image" src="./images/pushkin.jpg" alt="Екатерининский дворец крупным планом">
+            <div class="card__title-hidden-container">
+              <h2 class="card__title">Пушкин</h2>
+            </div>
+            <button class="card__like-btn" type="button"></button>
+          </article>
         </li>
   
       </ul>
       
-    </section>
-
-    <section class="popup">
-      <form class="popup__form">
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <input class="popup__input popup__input_type_name" type="text" name="name">
-        <input class="popup__input popup__input_type_description" type="text" name="description">
-        <button class="popup__save-btn" type="submit">Сохранить</button>
-        <button class="popup__close-btn" type="button"></button>
-      </form>
     </section>
     
   </main>
@@ -100,6 +102,21 @@
     <p class="footer__copyright">&copy; 2022 Fedorova Darya</p>
   </footer>
 
-  <script src="./blocks/popup/popup.js"></script>
+  <section class="popup popup_opened">
+    <div class="popup__container">
+
+      <button class="popup__close-btn" type="button"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+
+      <form class="popup__form">
+        <input class="popup__input popup__input_type_name" type="text" name="name">
+        <input class="popup__input popup__input_type_description" type="text" name="description">
+        <button class="popup__save-btn" type="submit">Сохранить</button>
+      </form>
+
+    </div>
+  </section>
+
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
