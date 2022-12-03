@@ -32,66 +32,7 @@
 
     <section class="post-feed">
       <ul class="post-feed__list">
-        <li>
-          <article  class="card">
-            <img class="card__image" src="./images/saint-petersburg.jpg" alt="Исаакиевский собор крупным планом">
-            <div class="card__title-hidden-container">
-              <h2 class="card__title">Санкт-Петербург</h2>
-            </div>
-            <button class="card__like-btn" type="button"></button>
-          </article>
-        </li>
-        
-        <li>
-          <article  class="card">
-            <img class="card__image" src="./images/svetlpgorsk.jpg" alt="Море в Светлогорске">
-            <div class="card__title-hidden-container">
-              <h2 class="card__title">Светлогорск</h2>
-            </div>
-            <button class="card__like-btn" type="button"></button>
-          </article>
-        </li>
-  
-        <li>
-          <article  class="card">
-            <img class="card__image" src="./images/ekaterinburg.jpg" alt="офис российской медной компании">
-          <div class="card__title-hidden-container">
-            <h2 class="card__title">Екатеринбург</h2>
-          </div>
-          <button class="card__like-btn" type="button"></button>
-          </article>
-        </li>
-  
-        <li>
-          <article  class="card">
-            <img class="card__image" src="./images/kaliningrag.jpg" alt="Кафедральный сабор крупным планом">
-          <div class="card__title-hidden-container">
-            <h2 class="card__title">Калининград</h2>
-          </div>
-          <button class="card__like-btn" type="button"></button>
-          </article>
-        </li>
-  
-        <li>
-          <article  class="card">
-            <img class="card__image" src="./images/baikal.jpg" alt="Байкал, вид на пирс и бесконечное озеро">
-          <div class="card__title-hidden-container">
-            <h2 class="card__title">Байкал</h2>
-          </div>
-          <button class="card__like-btn" type="button"></button>
-          </article>
-        </li>
-  
-        <li>
-          <article  class="card">
-            <img class="card__image" src="./images/pushkin.jpg" alt="Екатерининский дворец крупным планом">
-            <div class="card__title-hidden-container">
-              <h2 class="card__title">Пушкин</h2>
-            </div>
-            <button class="card__like-btn" type="button"></button>
-          </article>
-        </li>
-  
+
       </ul>
       
     </section>
@@ -102,20 +43,48 @@
     <p class="footer__copyright">&copy; 2022 Fedorova Darya</p>
   </footer>
 
-  <section class="popup">
+  <section class="popup popup_type_edit-profile">
     <div class="popup__container">
 
-      <button class="popup__close-btn" type="button"></button>
+      <button class="popup__close-btn popup__close-btn_type_edit-profile" type="button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
 
-      <form class="popup__form" name="profile-edit">
-        <input class="popup__input popup__input_type_name" type="text" name="name">
-        <input class="popup__input popup__input_type_description" type="text" name="description">
+      <form class="popup__form popup__form_type_edit-profile" name="profile-edit">
+        <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя">
+        <input class="popup__input popup__input_type_description" type="text" name="description" placeholder="Описание профиля">
         <button class="popup__save-btn" type="submit">Сохранить</button>
       </form>
 
     </div>
   </section>
+
+  <section class="popup popup_type_new-picture">
+    <div class="popup__container">
+
+      <button class="popup__close-btn popup__close-btn_type_new-picture" type="button"></button>
+      <h2 class="popup__title">Новое место</h2>
+
+      <form class="popup__form popup__form_type_new-picture" name="add-new-post">
+        <input class="popup__input popup__input_type_card-name" type="text" name="card-name" placeholder="Название">
+        <input class="popup__input popup__input_type_link" type="text" name="link" placeholder="Ссылка на картинку">
+        <button class="popup__save-btn" type="submit">Создать</button>
+      </form>
+
+    </div>
+  </section>
+
+  <template id="card">
+    <li class="card-item">
+      <article class="card">
+        <img class="card__image" src="" alt="">
+        <div class="card__title-hidden-container">
+          <h2 class="card__title"></h2>
+        </div>
+        <button class="card__like-btn" type="button"></button>
+        <button class="card__delete-btn" type="button"></button>
+      </article>
+    </li>
+  </template>
 
   <script src="./scripts/index.js"></script>
 </body>
