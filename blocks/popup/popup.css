@@ -1,5 +1,7 @@
 .popup {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  animation: fadeOut 0.2s ease-in;
 }
 
 .popup::before {
@@ -11,4 +13,15 @@
   opacity: 0.5;
   width: 100%;
   height: 100%;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
