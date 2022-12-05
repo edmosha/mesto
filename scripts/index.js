@@ -33,27 +33,27 @@ const viewPicturePopupCloseButton = document.querySelector('.popup__close-btn_ty
 const initialCards = [
   {
     name: 'Пушкин',
-    link: '../images/pushkin.jpg'
+    link: './images/pushkin.jpg'
   },
   {
     name: 'Байкал',
-    link: '../images/baikal.jpg'
+    link: './images/baikal.jpg'
   },
   {
     name: 'Калининград',
-    link: '../images/kaliningrag.jpg'
+    link: './images/kaliningrag.jpg'
   },
   {
     name: 'Екатеринбург',
-    link: '../images/ekaterinburg.jpg'
+    link: './images/ekaterinburg.jpg'
   },
   {
     name: 'Светлогорск',
-    link: '../images/svetlpgorsk.jpg'
+    link: './images/svetlpgorsk.jpg'
   },
   {
     name: 'Санкт-Перербург',
-    link: '../images/saint-petersburg.jpg'
+    link: './images/saint-petersburg.jpg'
   }
 ];
 
