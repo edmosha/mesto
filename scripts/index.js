@@ -29,35 +29,6 @@ const viewPicturePopupImage = document.querySelector('.popup__image');
 const viewPicturePopupSign = document.querySelector('.popup__sign');
 const viewPicturePopupCloseButton = document.querySelector('.popup__close-btn_type_view-picture');
 
-
-const initialCards = [
-  {
-    name: 'Пушкин',
-    link: './images/pushkin.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: './images/baikal.jpg'
-  },
-  {
-    name: 'Калининград',
-    link: './images/kaliningrag.jpg'
-  },
-  {
-    name: 'Екатеринбург',
-    link: './images/ekaterinburg.jpg'
-  },
-  {
-    name: 'Светлогорск',
-    link: './images/svetlpgorsk.jpg'
-  },
-  {
-    name: 'Санкт-Перербург',
-    link: './images/saint-petersburg.jpg'
-  }
-];
-
-
 // добавление карточки
 function addCard(cardName, imageLink) {
   const card = createCard(cardName, imageLink);
@@ -101,7 +72,7 @@ function renderInitialCards(array) {
 }
 
 // вставляет в поля формы значения из профиля
-function fillInputValuesToEditPopup() {    
+function fillEditPopupInputValues() {    
   nameInput.value = nameProfile.textContent;
   descriptionInput.value = descriptionProfile.textContent;
 }
@@ -116,12 +87,12 @@ function closePopup(popup) {
 
 // открытие картинки
 function openViewPicPopup(cardName, imageLink) {
-  fillValuesViewPicturePopup(imageLink, cardName);
+  fillViewPicturePopupValues(imageLink, cardName);
   openPopup(viewPicturePopup);
 }
 
 // вставляет в попап картинку и подпись
-function fillValuesViewPicturePopup(imageLink, signText) {
+function fillViewPicturePopupValues(imageLink, signText) {
   viewPicturePopupImage.src = imageLink;
   viewPicturePopupImage.alt = signText;
   viewPicturePopupSign.textContent = signText;
@@ -150,7 +121,7 @@ renderInitialCards(initialCards);
 
 // edit popup 
 editPopupOpenButton.addEventListener('click', () => {
-  fillInputValuesToEditPopup();
+  fillEditPopupInputValues();
   openPopup(editPopup);
 });
 editPopupCloseButton.addEventListener('click', () => {closePopup(editPopup)});
