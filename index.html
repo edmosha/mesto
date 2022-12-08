@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="./pages/index.css">
   <link rel="icon" href="./images/favicon.png">
   <title>Mesto</title>
+  <script defer src="./scripts/initial-array.js"></script>
+  <script defer src="./scripts/index.js"></script>
 </head>
 <body class="page">
   <header class="header">
@@ -22,13 +24,13 @@
 
         <div class="profile__info-container-header">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-btn" type="button"></button>
+          <button class="profile__edit-btn" type="button" aria-label="редактировать"></button>
         </div>
         
         <p class="profile__description">Исследователь океана</p>
 
       </div>
-      <button class="profile__add-new-post-btn" type="button"></button>
+      <button class="profile__add-new-post-btn" type="button" aria-label="добавить новый пост"></button>
     </section>
 
     <section class="post-feed">
@@ -47,12 +49,12 @@
   <section class="popup popup_type_edit-profile">
     <div class="popup__container popup__container_type_form">
 
-      <button class="popup__close-btn popup__close-btn_type_edit-profile" type="button"></button>
+      <button class="popup__close-btn popup__close-btn_type_edit-profile" type="button" aria-label="закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
 
       <form class="popup__form popup__form_type_edit-profile" name="profile-edit">
-        <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя">
-        <input class="popup__input popup__input_type_description" type="text" name="description" placeholder="Описание профиля">
+        <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя" required>
+        <input class="popup__input popup__input_type_description" type="text" name="description" placeholder="Описание профиля" required>
         <button class="popup__save-btn" type="submit">Сохранить</button>
       </form>
 
@@ -62,12 +64,12 @@
   <section class="popup popup_type_new-picture">
     <div class="popup__container popup__container_type_form">
 
-      <button class="popup__close-btn popup__close-btn_type_new-picture" type="button"></button>
+      <button class="popup__close-btn popup__close-btn_type_new-picture" type="button" aria-label="закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
 
       <form class="popup__form popup__form_type_new-picture" name="add-new-post">
-        <input class="popup__input popup__input_type_card-name" type="text" name="card-name" placeholder="Название">
-        <input class="popup__input popup__input_type_link" type="text" name="link" placeholder="Ссылка на картинку">
+        <input class="popup__input popup__input_type_card-name" type="text" name="card-name" placeholder="Название" required>
+        <input class="popup__input popup__input_type_link" type="url" name="link" placeholder="Ссылка на картинку" required>
         <button class="popup__save-btn" type="submit">Создать</button>
       </form>
 
@@ -76,24 +78,23 @@
 
   <section class="popup  popup_type_view-picture">
     <div class="popup__container popup__container_type_picture">
-      <button class="popup__close-btn popup__close-btn_type_view-picture" type="button"></button>
-      <img class="popup__image" src="https://images.unsplash.com/photo-1669940986274-e3a909d20348?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" alt="">
-      <h3 class="popup__sign">Красивый пляжик</h3>
+      <button class="popup__close-btn popup__close-btn_type_view-picture" type="button" aria-label="закрыть"></button>
+      <img class="popup__image" src="#" alt="">
+      <h3 class="popup__sign"></h3>
     </div>
   </section>
 
   <template id="card">
     <li class="card__item">
       <article class="card">
-        <img class="card__image" src="" alt="">
+        <img class="card__image" src="#" alt="">
         <div class="card__title-hidden-container">
           <h2 class="card__title"></h2>
         </div>
-        <button class="card__like-btn" type="button"></button>
-        <button class="card__delete-btn" type="button"></button>
+        <button class="card__like-btn" type="button" aria-label="закрыть"></button>
+        <button class="card__delete-btn" type="button" aria-label="удалить"></button>
       </article>
     </li>
   </template>
-  <script src="./scripts/index.js"></script>
 </body>
 </html>
