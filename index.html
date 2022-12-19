@@ -52,9 +52,17 @@
       <button class="popup__close-btn popup__close-btn_type_edit-profile" type="button" aria-label="закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
 
-      <form class="popup__form popup__form_type_edit-profile" name="profile-edit">
-        <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя" required>
-        <input class="popup__input popup__input_type_description" type="text" name="description" placeholder="Описание профиля" required>
+      <form class="popup__form popup__form_type_edit-profile" name="profile-edit" novalidate>
+        <label class="popup__form-field">
+          <input class="popup__input popup__input_type_name" id="name" type="text" name="name" placeholder="Имя" minlength="2" maxlength="40" required>
+          <span class="popup__input-error popup__input-error_field_name">Ошибка</span>
+        </label>
+        
+        <label class="popup__form-field">
+          <input class="popup__input popup__input_type_description" id="description" type="text" name="description" placeholder="Описание профиля" minlength="2" maxlength="200" required>
+          <span class="popup__input-error popup__input-error_field_description">Ошибка</span>
+        </label>
+       
         <button class="popup__save-btn" type="submit">Сохранить</button>
       </form>
 
@@ -67,9 +75,17 @@
       <button class="popup__close-btn popup__close-btn_type_new-picture" type="button" aria-label="закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
 
-      <form class="popup__form popup__form_type_new-picture" name="add-new-post">
-        <input class="popup__input popup__input_type_card-name" type="text" name="card-name" placeholder="Название" required>
-        <input class="popup__input popup__input_type_link" type="url" name="link" placeholder="Ссылка на картинку" required>
+      <form class="popup__form popup__form_type_new-picture" name="add-new-post" novalidate>
+        <label class="popup__form-field">
+          <input class="popup__input popup__input_type_card-name" id="card-name" type="text" name="card-name" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__input-error popup__input-error_field_card-name">Ошибка</span>
+        </label>
+        
+        <label class="popup__form-field">
+          <input class="popup__input popup__input_type_link" id="link" type="url" name="link" placeholder="Ссылка на картинку" required>
+          <span class="popup__input-error popup__input-error_field_link">Ошибка</span>
+        </label>
+        
         <button class="popup__save-btn" type="submit">Создать</button>
       </form>
 

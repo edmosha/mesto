@@ -77,6 +77,8 @@ function fillEditPopupInputValues() {
   descriptionInput.value = descriptionProfile.textContent;
 }
 
+// открытие закрытие попапов
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
@@ -85,21 +87,21 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-// открытие картинки
+// работа с попапом просмотра картинки 
+
 function openViewPicPopup(cardName, imageLink) {
   fillViewPicturePopupValues(imageLink, cardName);
   openPopup(viewPicturePopup);
 }
 
-// вставляет в попап картинку и подпись
 function fillViewPicturePopupValues(imageLink, signText) {
   viewPicturePopupImage.src = imageLink;
   viewPicturePopupImage.alt = signText;
   viewPicturePopupSign.textContent = signText;
-  
 }
 
 // отправка форм
+
 function editFormSubmitHandler (evt) {
     evt.preventDefault(); 
 
@@ -117,7 +119,79 @@ function addCardFormSubmitHandler(evt) {
   closePopup(addCardPopup);
 }
 
+// обработчик ввода инпутов и проверка ошибок для них
+
+function showInputError(formElem, inputElem, errorMessage) {
+  const errorElem = formElem.querySelector(`.popup__input-error_field_${inputElem.id}`);
+
+  inputElem.classList.add('popup__input_type_error');
+  errorElem.textContent = errorMessage;
+  errorElem.classList.add('popup__input-error_active');
+}
+
+function hideInputError(formElem, inputElem) {
+  const errorElem = formElem.querySelector(`.popup__input-error_field_${inputElem.id}`);
+
+  inputElem.classList.remove('popup__input_type_error');
+  errorElem.classList.remove('popup__input-error_active');
+  errorElem.textContent = '';
+}
+
+function isValid(formElem, inputElem) {
+  if (!inputElem.validity.valid) {
+    showInputError(formElem, inputElem, inputElem.validationMessage);
+  } else {
+    hideInputError(formElem, inputElem);
+  }
+}
+
+// смена состояния кнопки
+
+function hasInvalidInput(inputList) {
+  return inputList.some(inputElem => {
+    return !inputElem.validity.valid;
+  })
+
+}
+
+function toggleButtonState(inputList, buttonElem) {
+  if (hasInvalidInput(inputList)) {
+    buttonElem.classList.add('popup__save-btn_inactive');
+    buttonElem.setAttribute('disabled', 'true');
+  } else {
+    buttonElem.classList.remove('popup__save-btn_inactive');
+    buttonElem.setAttribute('disabled', 'false');
+  }
+}
+
+// поиск и валидация форм
+
+function setEventListener(formElem) {
+  const inputList = Array.from(formElem.querySelectorAll('.popup__input'));
+  const buttonElem = formElem.querySelector('.popup__save-btn');
+
+  toggleButtonState(inputList, buttonElem);
+
+  inputList.forEach(inputElem => {
+    inputElem.addEventListener('input', () => {
+
+      isValid(formElem, inputElem);
+      toggleButtonState(inputList, buttonElem);
+    })
+  })
+}
+
+function enableValidation() {
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+
+  formList.forEach(formElem => {
+    setEventListener(formElem);
+  })
+}
+
 renderInitialCards(initialCards);
+
+enableValidation();
 
 // edit popup 
 editPopupOpenButton.addEventListener('click', () => {
@@ -132,4 +206,6 @@ addCardPopupOpenButton.addEventListener('click', () => {openPopup(addCardPopup)}
 addCardPopupCloseButton.addEventListener('click', () => {closePopup(addCardPopup)});
 addCardPopupForm.addEventListener('submit', addCardFormSubmitHandler);
 
+
 viewPicturePopupCloseButton.addEventListener('click', () => {closePopup(viewPicturePopup)});
+
