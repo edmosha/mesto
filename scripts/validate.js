@@ -1,26 +1,36 @@
+validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-btn',
+  errorElementSelector: '.popup__input-error_field_',
+  inactiveButtonClass: 'popup__save-btn_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+};
+
 // обработчик ввода инпутов и проверка ошибок для них
 
-function showInputError(formElem, inputElem, errorMessage, settingsObj) {
-  const errorElem = formElem.querySelector(`.popup__input-error_field_${inputElem.id}`);
+function showInputError(formElem, inputElem, errorMessage, validationConfig) {
+  const errorElem = formElem.querySelector(`${validationConfig.errorElementSelector}${inputElem.id}`);
 
-  inputElem.classList.add(settingsObj.inputErrorClass);
+  inputElem.classList.add(validationConfig.inputErrorClass);
   errorElem.textContent = errorMessage;
-  errorElem.classList.add(settingsObj.errorClass);
+  errorElem.classList.add(validationConfig.errorClass);
 }
 
-function hideInputError(formElem, inputElem, settingsObj) {
-  const errorElem = formElem.querySelector(`.popup__input-error_field_${inputElem.id}`);
+function hideInputError(formElem, inputElem, validationConfig) {
+  const errorElem = formElem.querySelector(`${validationConfig.errorElementSelector}${inputElem.id}`);
 
-  inputElem.classList.remove(settingsObj.inputErrorClass);
-  errorElem.classList.remove(settingsObj.errorClass);
+  inputElem.classList.remove(validationConfig.inputErrorClass);
+  errorElem.classList.remove(validationConfig.errorClass);
   errorElem.textContent = '';
 }
 
-function isValid(formElem, inputElem, settingsObj) {
+function isValid(formElem, inputElem) {
   if (!inputElem.validity.valid) {
-    showInputError(formElem, inputElem, inputElem.validationMessage, settingsObj);
+    showInputError(formElem, inputElem, inputElem.validationMessage, validationConfig);
   } else {
-    hideInputError(formElem, inputElem, settingsObj);
+    hideInputError(formElem, inputElem, validationConfig);
   }
 }
 
@@ -33,45 +43,38 @@ function hasInvalidInput(inputList) {
 
 }
 
-function toggleButtonState(inputList, buttonElem, settingsObj) {
+function toggleButtonState(inputList, buttonElem) {
   if (hasInvalidInput(inputList)) {
-    buttonElem.classList.add(settingsObj.inactiveButtonClass);
+    buttonElem.classList.add(validationConfig.inactiveButtonClass);
     buttonElem.setAttribute('disabled', 'true');
   } else {
-    buttonElem.classList.remove(settingsObj.inactiveButtonClass);
+    buttonElem.classList.remove(validationConfig.inactiveButtonClass);
     buttonElem.removeAttribute('disabled');
   }
 }
 
 // поиск и валидация форм
 
-function setEventListener(formElem, settingsObj) {
-  const inputList = Array.from(formElem.querySelectorAll(settingsObj.inputSelector));
-  const buttonElem = formElem.querySelector(settingsObj.submitButtonSelector);
+function setEventListener(formElem) {
+  const inputList = Array.from(formElem.querySelectorAll(validationConfig.inputSelector));
+  const buttonElem = formElem.querySelector(validationConfig.submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElem, settingsObj);
+  toggleButtonState(inputList, buttonElem);
 
   inputList.forEach(inputElem => {
     inputElem.addEventListener('input', () => {
 
-      isValid(formElem, inputElem, settingsObj);
-      toggleButtonState(inputList, buttonElem, settingsObj);
+      isValid(formElem, inputElem);
+      toggleButtonState(inputList, buttonElem);
     })
   })
 }
 
-function enableValidation(settingsObj) {
-  const formList = Array.from(document.querySelectorAll(settingsObj.formSelector));
+function enableValidation(validationConfig) {
+  const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
   formList.forEach(formElem => {
-    setEventListener(formElem, settingsObj);
+    setEventListener(formElem);
   })
 }
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-btn',
-  inactiveButtonClass: 'popup__save-btn_inactive',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
-});
+enableValidation(validationConfig);
