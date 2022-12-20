@@ -9,6 +9,7 @@
 /* page */
 
 @import url(../blocks/page/page.css);
+@import url(../blocks/page/__scroll-hidden/page__scroll-hidden.css);
 
 /* header*/
 
