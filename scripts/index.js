@@ -64,14 +64,12 @@ function fillEditPopupInputValues() {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  page.classList.add('page__scroll-hidden');
   document.addEventListener('keydown', pressEscClosePopup);
 }
 
 function closePopup(popup) {
   document.removeEventListener('keydown', pressEscClosePopup);
   popup.classList.remove('popup_opened');
-  page.classList.remove('page__scroll-hidden');
 }
 
 function pressEscClosePopup(evt) {
