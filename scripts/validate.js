@@ -26,7 +26,7 @@ function hideInputError(formElem, inputElem, validationConfig) {
   errorElem.textContent = '';
 }
 
-function isValid(formElem, inputElem) {
+function isValid(formElem, inputElem, validationConfig) {
   if (!inputElem.validity.valid) {
     showInputError(formElem, inputElem, inputElem.validationMessage, validationConfig);
   } else {
@@ -43,7 +43,7 @@ function hasInvalidInput(inputList) {
 
 }
 
-function toggleButtonState(inputList, buttonElem) {
+function toggleButtonState(inputList, buttonElem, validationConfig) {
   if (hasInvalidInput(inputList)) {
     buttonElem.classList.add(validationConfig.inactiveButtonClass);
     buttonElem.setAttribute('disabled', 'true');
@@ -53,19 +53,24 @@ function toggleButtonState(inputList, buttonElem) {
   }
 }
 
+function disableSubmitButton(submitButton) {
+  submitButton.setAttribute('disabled', 'true');
+  submitButton.classList.add('popup__save-btn_inactive');
+}
+
 // поиск и валидация форм
 
-function setEventListener(formElem) {
+function setEventListener(formElem, validationConfig) {
   const inputList = Array.from(formElem.querySelectorAll(validationConfig.inputSelector));
   const buttonElem = formElem.querySelector(validationConfig.submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElem);
+  toggleButtonState(inputList, buttonElem, validationConfig);
 
   inputList.forEach(inputElem => {
     inputElem.addEventListener('input', () => {
 
-      isValid(formElem, inputElem);
-      toggleButtonState(inputList, buttonElem);
+      isValid(formElem, inputElem, validationConfig);
+      toggleButtonState(inputList, buttonElem, validationConfig);
     })
   })
 }
@@ -73,7 +78,7 @@ function setEventListener(formElem) {
 function enableValidation(validationConfig) {
   const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
   formList.forEach(formElem => {
-    setEventListener(formElem);
+    setEventListener(formElem, validationConfig);
   })
 }
 
