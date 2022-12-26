@@ -2,6 +2,7 @@
 const editPopup = document.querySelector('.popup_type_edit-profile');
 const editPopupOpenButton = document.querySelector('.profile__edit-btn');
 const editPopupForm = editPopup.querySelector('.popup__form_type_edit-profile');
+const editPopupSubmitButton = editPopup.querySelector('.popup__save-btn');
 
 const nameInput = editPopup.querySelector('.popup__input_type_name');
 const descriptionInput = editPopup.querySelector('.popup__input_type_description');
@@ -12,6 +13,7 @@ const descriptionProfile = document.querySelector('.profile__description');
 const addCardPopup = document.querySelector('.popup_type_new-picture');
 const addCardPopupOpenButton = document.querySelector('.profile__add-new-post-btn');
 const addCardPopupForm = addCardPopup.querySelector('.popup__form_type_new-picture');
+const addCardPopupSubmitButton = addCardPopup.querySelector('.popup__save-btn');
 
 const cardNameInput = addCardPopup.querySelector('.popup__input_type_card-name');
 const linkInput = addCardPopup.querySelector('.popup__input_type_link');
@@ -83,13 +85,8 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {
-  const submitButton = popup.querySelector('.popup__save-btn');
-
   document.removeEventListener('keydown', pressEscClosePopup);
   popup.classList.remove('popup_opened');
-
-  submitButton.setAttribute('disabled', 'true');
-  submitButton.classList.add('popup__save-btn_inactive');
 }
 
 function pressEscClosePopup(evt) {
@@ -130,12 +127,12 @@ function fillViewPicturePopupValues(imageLink, signText) {
 // отправка форм
 
 function editFormSubmitHandler (evt) {
-    evt.preventDefault(); 
+  evt.preventDefault(); 
 
-    nameProfile.textContent = nameInput.value;
-    descriptionProfile.textContent = descriptionInput.value;
-
-    closePopup(editPopup);
+  nameProfile.textContent = nameInput.value;
+  descriptionProfile.textContent = descriptionInput.value;
+  closePopup(editPopup);
+  disableSubmitButton(editPopupSubmitButton);
 }
 
 function addCardFormSubmitHandler(evt) {
@@ -144,6 +141,7 @@ function addCardFormSubmitHandler(evt) {
   addCard(cardNameInput.value, linkInput.value);
   addCardPopupForm.reset();
   closePopup(addCardPopup);
+  disableSubmitButton(addCardPopupSubmitButton);
 }
 
 
