@@ -1,7 +1,11 @@
+const viewPicturePopup = document.querySelector('.popup_type_view-picture');
+const viewPicturePopupImage = document.querySelector('.popup__image');
+const viewPicturePopupSign = document.querySelector('.popup__sign');
+
 export default class Card {
   constructor(data, templateSelector) {
     this._title = data.title;
-    this._image = data.image;
+    this._imageLink = data.image;
     this._templateSelector = templateSelector;
   }
 
@@ -33,8 +37,15 @@ export default class Card {
     // open image popup
     this._element.querySelector('.card__image')
       .addEventListener('click', () => {
-      openViewPicPopup(this._title, this._image);
-    })
+        
+        viewPicturePopupImage.src = this._imageLink;
+        viewPicturePopupImage.alt = this._title;
+        viewPicturePopupSign.textContent = this._title;
+
+        viewPicturePopup.classList.add('popup_opened');
+    }) 
+    // пока фунции попапов в index.js их нельзя экспортировать 
+    // проблема решится после вынесения попапов в др файл
   }
 
   _like() {
@@ -43,17 +54,11 @@ export default class Card {
     .classList.toggle('card__like-btn_focus');
   }
 
-  _debug() {
-    console.log(this._image);
-    console.log(this._title);
-    console.log(this._templateSelector);
-  }
-
   createCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    this._element.querySelector('.card__image').src = this._image;
+    this._element.querySelector('.card__image').src = this._imageLink;
     this._element.querySelector('.card__image').alt = this._title;
     this._element.querySelector('.card__title').textContent = this._title;
 
