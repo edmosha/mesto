@@ -1,11 +1,15 @@
+import Card from './card.js';
+import {initialCards} from './initial-array.js';
+import { validationConfig, FormValidator } from './validate.js';
+
 // редактирование профиля
 const editPopup = document.querySelector('.popup_type_edit-profile');
 const editPopupOpenButton = document.querySelector('.profile__edit-btn');
 const editPopupForm = editPopup.querySelector('.popup__form_type_edit-profile');
 const editPopupSubmitButton = editPopup.querySelector('.popup__save-btn');
 
-const nameInput = editPopup.querySelector('.popup__input_type_name');
-const descriptionInput = editPopup.querySelector('.popup__input_type_description');
+const nameInput = editPopup.querySelector('.popup__input_type_name'); 
+const descriptionInput = editPopup.querySelector('.popup__input_type_description'); 
 const nameProfile = document.querySelector('.profile__name');
 const descriptionProfile = document.querySelector('.profile__description');
 
@@ -18,56 +22,28 @@ const addCardPopupSubmitButton = addCardPopup.querySelector('.popup__save-btn');
 const cardNameInput = addCardPopup.querySelector('.popup__input_type_card-name');
 const linkInput = addCardPopup.querySelector('.popup__input_type_link');
 
-const templateCard = document.querySelector('#card').content.querySelector('.card__item');
 const cardList = document.querySelector('.post-feed__list');
 
-// просмотр картинки
-const viewPicturePopup = document.querySelector('.popup_type_view-picture');
-const viewPicturePopupImage = document.querySelector('.popup__image');
-const viewPicturePopupSign = document.querySelector('.popup__sign');
+// валидация
+const editForm = document.querySelector('.popup__form_type_edit-profile');
+const addCardForm = document.querySelector('.popup__form_type_new-picture');
 
-const page = document.querySelector('.page');
-const cardContainer = document.querySelector('.post-feed__list');
-
+const editFormValidator = new FormValidator(validationConfig, editForm);
+const addCardFormValidator = new FormValidator(validationConfig, addCardForm);
 
 // работа с карточками 
-function createCard(cardName, imageLink) {
-  const cardItem = templateCard.cloneNode(true);
-  const likeButton = cardItem.querySelector('.card__like-btn');
-  const deleteButton = cardItem.querySelector('.card__delete-btn');
 
-  const cardImage = cardItem.querySelector('.card__image');
-  const cardTitle = cardItem.querySelector('.card__title');
+function addCard(data, templateSelector) {
+  const card = new Card(data, templateSelector);
+  const cardElement = card.createCard();
 
-  cardTitle.textContent = cardName;
-  cardImage.alt = cardName;
-  cardImage.src = imageLink;
+  cardList.prepend(cardElement);
+}
 
-    // лайк
-    likeButton.addEventListener('click', (evt) => {
-      evt.target.classList.toggle('card__like-btn_focus');
-    });
-  
-    // удаление
-    deleteButton.addEventListener('click', () => {
-      cardItem.remove();
-    });  
-
-  // открытие попапа картинки
-  cardImage.addEventListener('click', () => {
-    openViewPicPopup(cardName, imageLink);
+function renderInitialCards(initialArray) {
+  initialArray.forEach(elem => { 
+    addCard(elem, '#card'); 
   });
-
-  return cardItem;
-}
-
-function addCard(cardName, imageLink) {
-  const card = createCard(cardName, imageLink);
-  cardList.prepend(card);
-}
-
-function renderInitialCards(array) {
-  array.forEach(elem => {addCard(elem.name, elem.link)});
 }
 
 // вставляет в поля формы значения из профиля
@@ -79,25 +55,25 @@ function fillEditPopupInputValues() {
 
 // открытие закрытие попапов
 
-function openPopup(popup) {
+function openPopup(popup) { 
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', pressEscClosePopup);
 }
 
-function closePopup(popup) {
+function closePopup(popup) { 
   document.removeEventListener('keydown', pressEscClosePopup);
   popup.classList.remove('popup_opened');
 }
 
 function pressEscClosePopup(evt) {
-  if (evt.key === 'Escape') {
+  if (evt.key === 'Escape') { 
 
-    closePopup(document.querySelector('.popup_opened'));
+    document.querySelector('.popup_opened').classList.toggle('popup_opened');
   }
 }
 
-function setCloseEventPopup() {
-  popupList = Array.from(document.querySelectorAll('.popup'));
+function setCloseEventPopup() { 
+  const popupList = Array.from(document.querySelectorAll('.popup'));
 
   popupList.forEach(popup => {
     const popupCloseButton = popup.querySelector('.popup__close-btn');
@@ -111,20 +87,12 @@ function setCloseEventPopup() {
   })
 }
 
-// работа с попапом просмотра картинки 
-
-function openViewPicPopup(cardName, imageLink) {
-  fillViewPicturePopupValues(imageLink, cardName);
-  openPopup(viewPicturePopup);
-}
-
-function fillViewPicturePopupValues(imageLink, signText) {
-  viewPicturePopupImage.src = imageLink;
-  viewPicturePopupImage.alt = signText;
-  viewPicturePopupSign.textContent = signText;
-}
-
 // отправка форм
+
+function disableSubmitButton(submitButton) {
+  submitButton.setAttribute('disabled', 'true');
+  submitButton.classList.add('popup__save-btn_inactive');
+}
 
 function editFormSubmitHandler (evt) {
   evt.preventDefault(); 
@@ -138,12 +106,11 @@ function editFormSubmitHandler (evt) {
 function addCardFormSubmitHandler(evt) {
   evt.preventDefault(); 
 
-  addCard(cardNameInput.value, linkInput.value);
+  addCard({title: cardNameInput.value, image: linkInput.value}, '#card');
   addCardPopupForm.reset();
   closePopup(addCardPopup);
   disableSubmitButton(addCardPopupSubmitButton);
 }
-
 
 renderInitialCards(initialCards);
 setCloseEventPopup();
@@ -158,3 +125,7 @@ editPopupForm.addEventListener('submit', editFormSubmitHandler);
 // add new picture popup 
 addCardPopupOpenButton.addEventListener('click', () => {openPopup(addCardPopup)});
 addCardPopupForm.addEventListener('submit', addCardFormSubmitHandler);
+
+
+editFormValidator.enableValidation();
+addCardFormValidator.enableValidation();

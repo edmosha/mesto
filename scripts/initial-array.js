@@ -1,26 +1,26 @@
-const initialCards = [
+export const initialCards = [
   {
-    name: 'Пушкин',
-    link: './images/pushkin.jpg'
+    title: 'Пушкин',
+    image: './images/pushkin.jpg'
   },
   {
-    name: 'Байкал',
-    link: './images/baikal.jpg'
+    title: 'Байкал',
+    image: './images/baikal.jpg'
   },
   {
-    name: 'Калининград',
-    link: './images/kaliningrag.jpg'
+    title: 'Калининград',
+    image: './images/kaliningrag.jpg'
   },
   {
-    name: 'Екатеринбург',
-    link: './images/ekaterinburg.jpg'
+    title: 'Екатеринбург',
+    image: './images/ekaterinburg.jpg'
   },
   {
-    name: 'Светлогорск',
-    link: './images/svetlpgorsk.jpg'
+    title: 'Светлогорск',
+    image: './images/svetlpgorsk.jpg'
   },
   {
-    name: 'Санкт-Перербург',
-    link: './images/saint-petersburg.jpg'
+    title: 'Санкт-Перербург',
+    image: './images/saint-petersburg.jpg'
   }
 ];
