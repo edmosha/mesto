@@ -1,12 +1,9 @@
-const viewPicturePopup = document.querySelector('.popup_type_view-picture');
-const viewPicturePopupImage = document.querySelector('.popup__image');
-const viewPicturePopupSign = document.querySelector('.popup__sign');
-
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleOpenPopup) {
     this._title = data.title;
     this._imageLink = data.image;
     this._templateSelector = templateSelector;
+    this._handleOpenPopup = handleOpenPopup;
   }
 
   _getTemplate() {
@@ -21,41 +18,34 @@ export default class Card {
 
   _setEventListeners() {
     // like
-    this._element
-      .querySelector('.card__like-btn')
-      .addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
       this._like();
     });
     
     // delete
-    this._element
-      .querySelector('.card__delete-btn')
-      .addEventListener('click', () => {
-      this._element.remove();
+    this._deleteButton.addEventListener('click', () => {
+      this._delete();
     })
 
     // open image popup
     this._element.querySelector('.card__image')
       .addEventListener('click', () => {
-        
-        viewPicturePopupImage.src = this._imageLink;
-        viewPicturePopupImage.alt = this._title;
-        viewPicturePopupSign.textContent = this._title;
-
-        viewPicturePopup.classList.add('popup_opened');
+        this._handleOpenPopup(this._title, this._imageLink);
     }) 
-    // пока фунции попапов в index.js их нельзя экспортировать 
-    // проблема решится после вынесения попапов в др файл
   }
 
   _like() {
-    this._element
-    .querySelector('.card__like-btn')
-    .classList.toggle('card__like-btn_focus');
+    this._likeButton.classList.toggle('card__like-btn_focus');
+  }
+
+  _delete() {
+    this._element.remove();
   }
 
   createCard() {
     this._element = this._getTemplate();
+    this._likeButton = this._element.querySelector('.card__like-btn');
+    this._deleteButton = this._element.querySelector('.card__delete-btn');
     this._setEventListeners();
 
     this._element.querySelector('.card__image').src = this._imageLink;

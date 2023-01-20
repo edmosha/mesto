@@ -1,14 +1,4 @@
-export const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-btn',
-  errorElementSelector: '.popup__input-error_field_',
-  inactiveButtonClass: 'popup__save-btn_inactive',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
-};
-
-export class FormValidator {
+export default class FormValidator {
   constructor(config, formElement) {
     this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
@@ -75,6 +65,14 @@ export class FormValidator {
         this._isValid(inputElem);
         this._toggleButtonState();
       })
+    })
+  }
+
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach(inputElem => {
+      this._hideInputError(inputElem)
     })
   }
 
