@@ -69,8 +69,8 @@ function handleOpenProfilePopup() {
 }
 
 function handleOpenCardPopup() {
-  cardFormValidator.resetValidation();
   cardPopupForm.reset();
+  cardFormValidator.resetValidation();
   openPopup(cardPopup);
 }
 
