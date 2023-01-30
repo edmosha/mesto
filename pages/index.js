@@ -71,15 +71,24 @@ profilePopup.setEventListeners();
 
 
 const cardPopup = new PopupWithForm({
-  handleFormSubmit: (evt) => {
+  handleFormSubmit: () => {
+    const cardData = { 
+      title: cardPopup._inputList[0].value, 
+      image: cardPopup._inputList[1].value }
+    
+    const card = new Card(
+      cardData, 
+      '#card', { 
+        handleCardClick: (image, title) => imagePopup.open(image, title) 
+      })
 
-    // addCard({title: cardNameInput.value, image: linkInput.value}, '#card');
-    // реализовать добавление карточки
+    const cardElement = card.createCard();
+    cardList.addItem(cardElement);
 
     cardPopup.close();
     cardFormValidator.resetValidation();
   }
-}, '.popup_type_edit-profile');
+}, '.popup_type_new-picture');
 
 cardPopup.setEventListeners();
 

@@ -18,14 +18,11 @@ export default class Popup {
     const closeButton = this._element.querySelector('.popup__close-btn');
     closeButton.addEventListener('click', () => {
       this.close();
-      
-      console.log('клик кнопки закрыть')
     });
     
     this._element.addEventListener('click', (evt) => {
       if (evt.target.closest('.popup__container') === null) {
         this.close();
-        console.log('клик вне контейнера')
       };
     })
   }
@@ -33,7 +30,6 @@ export default class Popup {
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
       this.close();
-      console.log('клик esc')
     }
   }
 }

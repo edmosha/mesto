@@ -5,7 +5,6 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    console.log('getUserInfo()');
     return { 
       name: this._userName.textContent, 
       description: this._userInfo.textContent 
