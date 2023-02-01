@@ -1,27 +1,21 @@
 import Card from '../components/Card.js';
-import {initialCards} from '../components/initial-array.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
+import { initialCards } from '../utils/initial-array.js';
+import { 
+  validationConfig, 
+  profilePopupOpenButton,
+  cardPopupOpenButton,
+  editForm,
+  addCardForm
+ } from '../utils/constants.js';
 
-const profilePopupOpenButton = document.querySelector('.profile__edit-btn');
-const cardPopupOpenButton = document.querySelector('.profile__add-new-post-btn');
-
+import './index.css'
 
 // validation
-const editForm = document.querySelector('.popup__form_type_edit-profile');
-const addCardForm = document.querySelector('.popup__form_type_new-picture');
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-btn',
-  errorElementSelector: '.popup__input-error_field_',
-  inactiveButtonClass: 'popup__save-btn_inactive',
-  inputErrorClass: 'popup__input_type_error',
-};
 
 const profileFormValidator = new FormValidator(validationConfig, editForm);
 const cardFormValidator = new FormValidator(validationConfig, addCardForm);
