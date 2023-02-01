@@ -1,10 +1,10 @@
-import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import { initialCards } from '../utils/initial-array.js';
+import { createCard } from '../utils/utils.js';
 import { 
   validationConfig, 
   profilePopupOpenButton,
@@ -31,13 +31,7 @@ imagePopup.setEventListeners();
 const cardList = new Section({
   items: initialCards,
   renderer: (cardItem) => {
-    const card = new Card(
-      cardItem, 
-      '#card', { 
-        handleCardClick: (image, title) => imagePopup.open(image, title) 
-      })
-
-    const cardElement = card.createCard();
+    const cardElement = createCard(cardItem);
     cardList.addItem(cardElement);
   }
 }, '.post-feed__list');
@@ -58,30 +52,24 @@ const profilePopup = new PopupWithForm({
 
     profilePopup.close(); 
     profileFormValidator.resetValidation();
-  }
+  },
+  isInitialValues: true
 }, '.popup_type_edit-profile');
 
 profilePopup.setEventListeners();
 
 
 const cardPopup = new PopupWithForm({
-  handleFormSubmit: () => {
-    const cardData = { 
-      title: cardPopup._inputList[0].value, 
-      image: cardPopup._inputList[1].value }
-    
-    const card = new Card(
-      cardData, 
-      '#card', { 
-        handleCardClick: (image, title) => imagePopup.open(image, title) 
-      })
+  handleFormSubmit: (cardData) => {
+    console.log(cardData);
 
-    const cardElement = card.createCard();
+    const cardElement = createCard(cardData);
     cardList.addItem(cardElement);
 
     cardPopup.close();
     cardFormValidator.resetValidation();
-  }
+  },
+  isInitialValues: false
 }, '.popup_type_new-picture');
 
 cardPopup.setEventListeners();
@@ -90,10 +78,6 @@ cardPopup.setEventListeners();
 profilePopupOpenButton.addEventListener('click', () => { 
   profileFormValidator.resetValidation();
   const userData = profile.getUserInfo();
-
-  profilePopup._inputList[0].value = userData.name;
-  profilePopup._inputList[1].value = userData.description;
-
   profilePopup.open(userData);
 });
 
