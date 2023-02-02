@@ -9,15 +9,6 @@ export default class PopupWithForm extends Popup {
     this._isInitialValues = isInitialValues;
   }
 
-  open(userData) {
-    if(this._isInitialValues) {
-      this._inputList.forEach((input, index) => {
-        input.value = userData[Object.keys(userData)[index]];
-      });
-    }
-    super.open();
-  }
-
   close() {
     super.close();
     this._form.reset();
@@ -31,6 +22,14 @@ export default class PopupWithForm extends Popup {
     });
 
     return this._formValues;
+  }
+
+  setInputValues(userData) {
+    if(this._isInitialValues) {
+      this._inputList.forEach((input, index) => {
+        input.value = userData[Object.keys(userData)[index]];
+      });
+    }
   }
 
   setEventListeners() {

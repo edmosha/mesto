@@ -78,7 +78,8 @@ cardPopup.setEventListeners();
 profilePopupOpenButton.addEventListener('click', () => { 
   profileFormValidator.resetValidation();
   const userData = profile.getUserInfo();
-  profilePopup.open(userData);
+  profilePopup.setInputValues(userData);
+  profilePopup.open();
 });
 
 
