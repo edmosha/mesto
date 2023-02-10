@@ -4,15 +4,20 @@ export default class UserInfo {
     this._userInfo = document.querySelector(userInfoSelector);
   }
 
-  getUserInfo() {
-    return { 
-      name: this._userName.textContent, 
-      description: this._userInfo.textContent 
-    };
-  }
+  // getUserInfo() {
+  //   return { 
+  //     name: this._userName.textContent, 
+  //     description: this._userInfo.textContent 
+  //   };
+  // }
 
   setUserInfo({ name, description }) {
     this._userName.textContent = name;
     this._userInfo.textContent = description;
+    // реализовать аватарку
+  }
+
+  setUserAvatar() {
+    
   }
 }

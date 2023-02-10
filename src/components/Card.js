@@ -1,9 +1,11 @@
 export default class Card {
-  constructor(data, templateSelector, { handleCardClick }) {
-    this._title = data.title;
-    this._imageLink = data.image;
-    this._templateSelector = templateSelector;
+  constructor({ data, handleCardClick, handleCardDelete }, templateSelector) {
+    this._title = data.name;
+    this._image = data.link;
+    this._id = data._id;
     this._handleCardClick = handleCardClick;
+    this._handleCardDelete = handleCardDelete;
+    this._templateSelector = templateSelector;
   }
 
   _getTemplate() {
@@ -14,6 +16,15 @@ export default class Card {
     .cloneNode(true);
 
     return cardElement;
+  }
+
+  _like() {
+    this._likeButton.classList.toggle('card__like-btn_focus');
+  }
+
+  _delete() {
+    this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {
@@ -30,17 +41,9 @@ export default class Card {
     // open image popup
     this._element.querySelector('.card__image')
       .addEventListener('click', () => {
-        this._handleCardClick(this._imageLink, this._title);
+        // this._handleCardClick(this._image, this._title);
+        this._handleCardClick(this._image, this._title);
     }) 
-  }
-
-  _like() {
-    this._likeButton.classList.toggle('card__like-btn_focus');
-  }
-
-  _delete() {
-    this._element.remove();
-    this._element = null;
   }
 
   createCard() {
@@ -49,7 +52,7 @@ export default class Card {
     this._deleteButton = this._element.querySelector('.card__delete-btn');
     this._setEventListeners();
 
-    this._element.querySelector('.card__image').src = this._imageLink;
+    this._element.querySelector('.card__image').src = this._image;
     this._element.querySelector('.card__image').alt = this._title;
     this._element.querySelector('.card__title').textContent = this._title;
 
