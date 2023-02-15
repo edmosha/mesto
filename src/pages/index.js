@@ -50,7 +50,7 @@ const cardList = new Section({
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(res => {
-    const [ user, cards ] = res; 
+    const [ user, cards ] = res;
     
     userInfo.setUserInfo({ 
       name: user.name, 
@@ -72,7 +72,7 @@ const profilePopup = new PopupWithForm({
         userInfo.setUserInfo(userData);
       })
       .finally(() => {
-        profilePopup.close(); 
+        profilePopup.close();
         profileFormValidator.resetValidation();
         profilePopup.setSubmitButtonText('Сохранить');
       })
