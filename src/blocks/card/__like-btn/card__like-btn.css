@@ -5,7 +5,7 @@
   border: none;
   background: transparent url(../../../images/like-button.svg) center no-repeat;
   cursor: pointer;
-  margin: 30px 20px 25px 0;
+  margin-bottom: 3px;
 }
 
 .card__like-btn:hover {

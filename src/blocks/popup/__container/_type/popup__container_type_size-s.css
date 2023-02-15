@@ -1,8 +1,8 @@
-.popup__container_type_form {
-  width: 430px;
-  height: 330px;
+.popup__container_type_size-s {
   box-sizing: border-box;
-  justify-content: space-between;
+  width: 430px;
+  height: 181px;
+
   padding: 34px 36px 37px;
   border-radius: 10px;
   background-color: #fff;
@@ -11,9 +11,9 @@
 }
 
 @media screen and (max-width: 767px) {
-  .popup__container_type_form {
+  .popup__container_type_size-s {
     width: 282px;
-    height: 322px;
+    height: 189px;
     padding: 25px 22px 25px;
   }
 }

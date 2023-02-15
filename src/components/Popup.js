@@ -25,6 +25,8 @@ export default class Popup {
         this.close();
       };
     })
+
+    this._element.style = 'animation: fadeOut 0.2s ease-in;';
   }
 
   _handleEscClose(evt) {

@@ -1,23 +1,21 @@
 export default class UserInfo {
-  constructor({ userNameSelector, userInfoSelector }){
-    this._userName = document.querySelector(userNameSelector);
-    this._userInfo = document.querySelector(userInfoSelector);
+  constructor({ userNameSelector, userInfoSelector, userAvatarSelector }){
+    this._name = document.querySelector(userNameSelector);
+    this._about = document.querySelector(userInfoSelector);
+    this._avatar = document.querySelector(userAvatarSelector);
   }
 
-  // getUserInfo() {
-  //   return { 
-  //     name: this._userName.textContent, 
-  //     description: this._userInfo.textContent 
-  //   };
-  // }
-
-  setUserInfo({ name, description }) {
-    this._userName.textContent = name;
-    this._userInfo.textContent = description;
-    // реализовать аватарку
+  setUserInfo({ name, about, id }) {
+    this._name.textContent = name;
+    this._about.textContent = about;
+    this._id = id;
   }
 
-  setUserAvatar() {
-    
+  setUserAvatar(link) {
+    this._avatar.src = link;
+  }
+
+  getUserId() {
+    return this._id;
   }
 }
