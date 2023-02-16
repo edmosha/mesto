@@ -21,15 +21,18 @@ export default class Card {
 
     return cardElement;
   }
+
+  _removeDeleteButton() {
+    this._deleteButton.remove();
+  }
+
   toggleLike() {
     this._likeButton.classList.toggle('card__like-btn_focus');
   }
 
   isLiked() {
     return Boolean(this._likes.find((user) => {
-      if(user._id === this._userId) {
-        return user
-      }
+      if(user._id === this._userId) { return user }
     }))
   }
 
@@ -43,22 +46,13 @@ export default class Card {
     this._element = null;
   }
 
-  _setDeleteButton() {
-    this._element
-      .querySelector('.card')
-      .insertAdjacentHTML(
-        'beforeend',
-        '<button class="card__delete-btn" type="button" aria-label="удалить"></button>'
-      )
-  }
-
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => {
       this._handleCardLike(this._id);
     });
 
     if(this._ownerId === this._userId){
-      this._element.querySelector('.card__delete-btn').addEventListener('click', () => {
+      this._deleteButton.addEventListener('click', () => {
         this._handleCardDelete(this._id);
       })
     }
@@ -72,23 +66,21 @@ export default class Card {
   createCard() {
     this._element = this._getTemplate();
     this._likeButton = this._element.querySelector('.card__like-btn');
-    this._likeCounter = this._element.querySelector('.card__like-counter')
-    
-    if (this._userId === this._ownerId) {
-      this._setDeleteButton();
-    }
+    this._deleteButton = this._element.querySelector('.card__delete-btn');
+    this._likeCounter = this._element.querySelector('.card__like-counter');
+    this._cardImage =  this._element.querySelector('.card__image');
+    this._cardTitle =  this._element.querySelector('.card__title');
 
-    if (this.isLiked()) {
-      this.toggleLike();
-    }
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._image;
+    this._cardTitle.textContent = this._title;
+    this._likeCounter.textContent = this._likes.length;
+    
+    if (this._userId !== this._ownerId) { this._removeDeleteButton() }
+    if (this.isLiked()) { this.toggleLike() }
     
     this._setEventListeners();
 
-    this._element.querySelector('.card__image').src = this._image;
-    this._element.querySelector('.card__image').alt = this._title;
-    this._element.querySelector('.card__title').textContent = this._title;
-    this._element.querySelector('.card__like-counter').textContent = this._likes.length;
-    
     return this._element;
   }
 }

@@ -29,7 +29,7 @@
         <p class="profile__description"></p>
 
       </div>
-      <button class="profile__add-new-post-btn" type="button" aria-label="добавить новый пост"></button>
+      <button class="profile__add-card-btn" type="button" aria-label="добавить новый пост"></button>
     </section>
 
     <section class="post-feed">
@@ -51,7 +51,7 @@
       <button class="popup__close-btn popup__close-btn_type_edit-profile" type="button" aria-label="закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
 
-      <form class="popup__form popup__form_type_edit-profile" name="profile-edit" novalidate>
+      <form class="popup__form popup__form_type_edit-profile" name="profile-form" novalidate>
 
           <input class="popup__input popup__input_type_name" id="name" type="text" name="name" placeholder="Имя" minlength="2" maxlength="40" required>
           <span class="popup__input-error popup__input-error_field_name">Ошибка</span>
@@ -65,13 +65,13 @@
     </div>
   </section>
 
-  <section class="popup popup_type_new-picture">
+  <section class="popup popup_type_add-card">
     <div class="popup__container popup__container_type_size-l">
 
-      <button class="popup__close-btn popup__close-btn_type_new-picture" type="button" aria-label="закрыть"></button>
+      <button class="popup__close-btn popup__close-btn_type_add-card" type="button" aria-label="закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
 
-      <form class="popup__form popup__form_type_new-picture" name="add-new-post" novalidate>
+      <form class="popup__form popup__form_type_add-card" name="card-form" novalidate>
 
           <input class="popup__input popup__input_type_card-name" id="card-name" type="text" name="title" placeholder="Название" minlength="2" maxlength="30" required>
           <span class="popup__input-error popup__input-error_field_card-name"></span>
@@ -99,7 +99,7 @@
       <button class="popup__close-btn popup__close-btn_type_confirm" type="button" aria-label="закрыть"></button>
       <h2 class="popup__title">Вы уверены?</h2>
 
-      <form class="popup__form popup__form_type_confirm" name="confirm" novalidate>
+      <form class="popup__form popup__form_type_confirm" name="confirm-form" novalidate>
         <button class="popup__save-btn" type="submit">Да</button>
       </form>
 
@@ -112,7 +112,7 @@
       <button class="popup__close-btn popup__close-btn_type_avatar" type="button" aria-label="закрыть"></button>
       <h2 class="popup__title">Обновить аватар</h2>
 
-      <form class="popup__form popup__form_type_avatar" name="avatar" novalidate>
+      <form class="popup__form popup__form_type_avatar" name="avatar-form" novalidate>
         
         <input class="popup__input popup__input_type_avatar" id="avatar" type="url" name="avatar" placeholder="Ссылка на картинку" required>
         <span class="popup__input-error popup__input-error_field_avatar"></span>
@@ -134,6 +134,7 @@
           <button class="card__like-btn" type="button" aria-label="лайк"></button>
           <p class="card__like-counter">10</p>
         </div>
+        <button class="card__delete-btn" type="button" aria-label="удалить"></button>
       </article>
     </li>
   </template>
