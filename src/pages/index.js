@@ -59,7 +59,6 @@ const enableValidation = (config) => {
     formValidators[formName] = validator;
     validator.enableValidation();
   });
-  console.log('formValidators ', formValidators)
 };
 
 enableValidation(validationConfig);
@@ -68,7 +67,7 @@ enableValidation(validationConfig);
 const profilePopup = new PopupWithForm({
   handleFormSubmit: (inputValues) => {
     const { name: name, description: about } = inputValues;
-    profilePopup.setSubmitButtonText('Сохранение...');
+    profilePopup.renderLoading(true);
 
     api.setUserInfo(name, about)
       .then(userData => {
@@ -77,7 +76,7 @@ const profilePopup = new PopupWithForm({
       })
       .catch(err => console.log(err))
       .finally(() => {
-        profilePopup.setSubmitButtonText('Сохранить');
+        profilePopup.renderLoading(false);
       })
   },
   isInitialValues: true
@@ -85,7 +84,7 @@ const profilePopup = new PopupWithForm({
 
 const cardPopup = new PopupWithForm({
   handleFormSubmit: (cardData) => {
-    cardPopup.setSubmitButtonText('Создание...');
+    cardPopup.renderLoading(true, 'Создание...');
 
     api.postNewCard(cardData)
       .then(data => {
@@ -94,7 +93,7 @@ const cardPopup = new PopupWithForm({
       })
       .catch(err => console.log(err))
       .finally(() => {
-        cardPopup.setSubmitButtonText('Создать');
+        cardPopup.renderLoading(false);
       })
   },
   isInitialValues: false
@@ -102,7 +101,7 @@ const cardPopup = new PopupWithForm({
 
 const avatarPopup = new PopupWithForm({
   handleFormSubmit: (imageData) => {
-    avatarPopup.setSubmitButtonText('Сохранение...');
+    avatarPopup.renderLoading(true)
 
     api.updateAvatar(imageData)
       .then(res => {
@@ -111,7 +110,7 @@ const avatarPopup = new PopupWithForm({
       })
       .catch(err => console.log(err))
       .finally(() => {
-        avatarPopup.setSubmitButtonText('Сохранить');
+        avatarPopup.renderLoading(false);
       })
   },
   isInitialValues: false
@@ -128,9 +127,16 @@ const createCard = (cardData) => {
     handleCardDelete: (cardId) => {
       confirmPopup.open({
         handleFormSubmit: () => {
-          card.delete();
-          confirmPopup.close();
-          api.deleteCard(cardId).catch(err => console.log(err))
+          confirmPopup.renderLoading(true, 'Удаление...')
+          api.deleteCard(cardId)
+            .then(() => {
+              card.delete();
+              confirmPopup.close();
+            })
+            .catch(err => console.log(err))
+            .finally(() => {
+              confirmPopup.renderLoading(false)
+            })
         }
       })
     },

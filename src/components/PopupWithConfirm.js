@@ -4,11 +4,21 @@ export default class PopupWithConfirm extends Popup {
     constructor(popupSelector) { 
     super(popupSelector);
     this._form = this._element.querySelector('.popup__form');
+    this._submitButton = this._element.querySelector('.popup__save-btn');
+    this._submitButtonText = this._submitButton.textContent;
   }
 
   open({ handleFormSubmit }) {
     super.open();
     this._handleFormSubmit = handleFormSubmit;
+  }
+
+  renderLoading(isLoading, loadingText='Сохранение...') {
+    if (isLoading) {
+      this._submitButton.textContent = loadingText;
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
 
   setEventListeners() {
